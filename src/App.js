@@ -48,17 +48,18 @@ class App extends React.Component {
   }
 
   completedToggle = (taskId) => {
-    const newData = this.state.data.map(task => {
-      if (task.id === taskId) {
-        return ({ ...task, completed: !task.completed })
-      }
-      else {
-        return (task)
-      }
-    });
     this.setState({
       ...this.state,
-      data: newData
+      data: this.state.data.map((task) => {
+        if (task.id === taskId) {
+          return {
+            ...task,
+            completed: !task.completed
+          }
+        } else {
+          return task
+        }
+      })
     })
   }
 
